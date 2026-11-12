@@ -1,0 +1,197 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-bone: #EDE8DC;
+  --color-moss: #4E5B3A;
+  --color-charcoal: #23241F;
+  --color-graphite: #161B21;
+  --color-turquoise: #14B8A6;
+
+  --font-sans: "Archivo", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: var(--font-sans);
+    background-color: #EDE8DC;
+    color: #23241F;
+    font-optical-sizing: auto;
+    font-kerning: normal;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html.dark {
+    background-color: #161B21;
+    color: #EDE8DC;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
+
+.font-condensed {
+  font-family: "Archivo", sans-serif;
+  font-variation-settings: "wdth" 72;
+  letter-spacing: -0.022em;
+  font-kerning: normal;
+}
+
+.type-display-hero {
+  font-family: "Archivo", sans-serif;
+  font-variation-settings: "wdth" 68;
+  font-size: clamp(2.35rem, 4.8vw, 4.25rem);
+  line-height: 0.94;
+  letter-spacing: -0.028em;
+  text-wrap: balance;
+}
+
+.type-display-section {
+  font-family: "Archivo", sans-serif;
+  font-variation-settings: "wdth" 72;
+  font-size: clamp(1.95rem, 3.4vw, 3.1rem);
+  line-height: 0.98;
+  letter-spacing: -0.024em;
+  text-wrap: balance;
+}
+
+.type-kicker {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1.25;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums slashed-zero;
+}
+
+.type-mono-spec {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums slashed-zero;
+  font-feature-settings: "zero" 1;
+}
+
+.type-prose {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  max-width: 64ch;
+  letter-spacing: 0.004em;
+}
+
+.type-prose-dark {
+  font-size: 0.9375rem;
+  line-height: 1.68;
+  max-width: 60ch;
+  letter-spacing: 0.014em;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums slashed-zero;
+}
+
+/* Slow ticker marquee */
+@keyframes milvita-marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-milvita-ticker {
+  display: flex;
+  width: max-content;
+  animation: milvita-marquee 38s linear infinite;
+}
+
+.animate-milvita-ticker:hover {
+  animation-play-state: paused;
+}
+
+/* Slow Ken Burns zoom for hero slides */
+@keyframes hero-ken-burns {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.07);
+  }
+}
+
+.animate-hero-zoom {
+  animation: hero-ken-burns 5.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Story progress bar animation */
+@keyframes story-progress {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+.animate-story-progress {
+  transform-origin: left center;
+  animation: story-progress 5s linear forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-milvita-ticker {
+    animation: none;
+  }
+  .animate-hero-zoom {
+    animation: none;
+    transform: scale(1);
+  }
+  .animate-story-progress {
+    animation: none;
+    transform: scaleX(1);
+  }
+}
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 10mm;
+  }
+
+  html,
+  body {
+    background: #ffffff !important;
+    color: #111111 !important;
+  }
+
+  #root {
+    display: none !important;
+  }
+
+  #milvita-print-portal {
+    position: static !important;
+    inset: auto !important;
+    display: block !important;
+    overflow: visible !important;
+    background: #ffffff !important;
+    padding: 0 !important;
+  }
+
+  #milvita-print-toolbar {
+    display: none !important;
+  }
+
+  #milvita-print-sheet {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    box-shadow: none !important;
+    border: 2px solid #111111 !important;
+  }
+}

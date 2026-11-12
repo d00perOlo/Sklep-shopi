@@ -1,0 +1,6 @@
+{
+  "name": "MILVITA — SURVIVAL FOOD / DROP 001",
+  "description": "MILVITA Survival Food storefront: ready-to-eat 24H, 48H, and 72H survival rations, field test logs, and Shopify-ready Drop 001 launch.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
